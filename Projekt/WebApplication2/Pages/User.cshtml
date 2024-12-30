@@ -1,0 +1,22 @@
+﻿@page
+@model UserModel
+@{
+}
+
+<div style="text-align: center; margin-top: 50px;">
+    <h2 class="text-center">Welcome to your account</h2>
+
+    <div style="margin: 20px auto; width: 60%; border: 1px solid #ddd; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+        <h3>Your Profile Information</h3>
+        <p><strong>First Name:</strong> @Model.appUser?.FirstName</p>
+        <p><strong>Last Name:</strong> @Model.appUser?.LastName</p>
+        <p><strong>Email:</strong> @Model.appUser?.Email</p>
+        <p><strong>Phone:</strong> @Model.appUser?.PhoneNumber</p>
+        <p><strong>Address:</strong> @Model.appUser?.Address</p>
+        <p><strong>Account Created:</strong> @Model.appUser?.CreateAt.ToString("MM/dd/yyyy")</p>
+
+        <hr>
+        <p>Thank you for being part of our community. If any of your details are incorrect, feel free to update your profile at any time.</p>
+        <p>We value your privacy and ensure your data is safe with us. For any questions or assistance, please contact our support team.</p>
+    </div>
+</div>

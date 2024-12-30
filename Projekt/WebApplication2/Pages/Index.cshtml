@@ -1,0 +1,59 @@
+﻿@page
+@using Microsoft.AspNetCore.Identity
+@using WebApplication2.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@model IndexModel
+
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div style="text-align: center; margin-top: 50px;">
+    <h1 class="display-4">Welcome to Our Platform</h1>
+    <p>Explore and enjoy the features of our application. We're here to make your experience better every day!</p>
+
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <div style="margin: 20px auto; width: 50%; border: 1px solid #ddd; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+            @if (User.IsInRole("admin"))
+            {
+                <h3 style="color: darkred;">ADMIN PORTAL ACCESS</h3>
+                <p>Welcome, Admin! Manage users, monitor activities, and oversee the entire system.</p>
+                <br />
+                <a href="Admin/Products" class="btn btn-info" style="margin: 10px;">Products</a>
+            }
+            else if (User.IsInRole("client"))
+            {
+                <h3 style="color: darkblue;">CLIENT AREA</h3>
+                <p>Hello Client! Discover services and track your orders easily from here.</p>
+            }
+            else if (User.IsInRole("seller"))
+            {
+                <h3 style="color: darkgreen;">SELLER DASHBOARD</h3>
+                <p>Welcome Seller! Manage your products and check your sales performance.</p>
+            }
+            else
+            {
+                <h3 style="color: gray;">WELCOME GUEST</h3>
+                <p>Please log in to access more features. We're glad to have you here!</p>
+            }
+        </div>
+    }
+    else
+    {
+        <p>Please sign in to access your personalized dashboard.</p>
+    }
+
+    <div style="margin-top: 30px;">
+        <a href="/User" class="btn btn-primary" style="margin: 10px;">User Page</a>
+        <a href="/Admin" class="btn btn-danger" style="margin: 10px;">Admin Panel</a>
+        <a href="/Client" class="btn btn-info" style="margin: 10px;">Client Section</a>
+    </div>
+
+    <div style="margin-top: 40px;">
+        <p>Learn more about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+        <p>For any issues, feel free to contact our <a href="/Support">Support Team</a>.</p>
+    </div>
+</div>
